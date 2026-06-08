@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Admin Antrian</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
     <style>
@@ -31,7 +33,11 @@
             --font-mono: 'DM Mono', monospace;
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: var(--font-body);
@@ -75,7 +81,9 @@
             flex-shrink: 0;
         }
 
-        .brand-mark i { color: var(--ink); }
+        .brand-mark i {
+            color: var(--ink);
+        }
 
         .brand-name {
             font-size: 15px;
@@ -107,14 +115,19 @@
             text-decoration: none;
         }
 
-        .nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.75); }
+        .nav-item:hover {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.75);
+        }
 
         .nav-item.active {
             background: var(--lime);
             color: var(--ink);
         }
 
-        .nav-item i { flex-shrink: 0; }
+        .nav-item i {
+            flex-shrink: 0;
+        }
 
         .sidebar-footer {
             margin-top: auto;
@@ -150,6 +163,27 @@
             flex: 1;
             padding: 32px 36px;
             min-width: 0;
+        }
+
+        /* ─── ALERT ─── */
+        .alert {
+            padding: 12px 16px;
+            border-radius: var(--r-sm);
+            margin-bottom: 18px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .alert.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .alert.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
         }
 
         /* ─── TOPBAR ─── */
@@ -191,8 +225,14 @@
             white-space: nowrap;
         }
 
-        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-        .btn-primary:active { transform: translateY(0); }
+        .btn-primary:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
 
         .btn-danger {
             display: inline-flex;
@@ -210,7 +250,9 @@
             transition: background 0.15s;
         }
 
-        .btn-danger:hover { background: rgba(245,159,0,0.08); }
+        .btn-danger:hover {
+            background: rgba(245,159,0,0.08);
+        }
 
         .btn-warning {
             display: inline-flex;
@@ -228,7 +270,9 @@
             transition: opacity 0.15s;
         }
 
-        .btn-warning:hover { opacity: 0.82; }
+        .btn-warning:hover {
+            opacity: 0.82;
+        }
 
         /* ─── CURRENT BANNER ─── */
         .current {
@@ -264,7 +308,9 @@
             letter-spacing: -1px;
         }
 
-        .current-number.empty { color: rgba(255,255,255,0.15); }
+        .current-number.empty {
+            color: rgba(255,255,255,0.15);
+        }
 
         .current-sep {
             width: 1px;
@@ -282,7 +328,9 @@
             margin-bottom: 8px;
         }
 
-        .current-name.empty { color: rgba(255,255,255,0.2); }
+        .current-name.empty {
+            color: rgba(255,255,255,0.2);
+        }
 
         .current-pill {
             display: inline-flex;
@@ -348,7 +396,9 @@
             transition: border-color 0.15s, box-shadow 0.15s;
         }
 
-        .queue-item:last-child { margin-bottom: 0; }
+        .queue-item:last-child {
+            margin-bottom: 0;
+        }
 
         .queue-item:hover {
             border-color: #d4d3cf;
@@ -401,8 +451,8 @@
         }
 
         .actions form {
-    display: inline-flex;
-}
+            display: inline-flex;
+        }
 
         /* ─── EMPTY ─── */
         .empty-state {
@@ -415,39 +465,35 @@
             font-size: 13px;
         }
 
-        .empty-state i { color: var(--line); }
+        .empty-state i {
+            color: var(--line);
+        }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 860px) {
-            .sidebar { display: none; }
-            .main { padding: 20px 16px; }
-            .grid { grid-template-columns: 1fr; }
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 20px 16px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 520px) {
-            .topbar { flex-direction: column; gap: 14px; }
-            .current { flex-wrap: wrap; }
+            .topbar {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .current {
+                flex-wrap: wrap;
+            }
         }
-
-        .alert {
-    padding: 12px 16px;
-    border-radius: var(--r-sm);
-    margin-bottom: 18px;
-    font-weight: 600;
-    font-size: 13px;
-}
-
-.alert.success {
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
-}
-
-.alert.error {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fecaca;
-}
     </style>
 </head>
 <body>
@@ -467,14 +513,17 @@
             <i data-lucide="layout-dashboard" size="15" stroke-width="2"></i>
             Dashboard
         </a>
+
         <a class="nav-item" href="#">
             <i data-lucide="users" size="15" stroke-width="2"></i>
             Antrian
         </a>
+
         <a class="nav-item" href="#">
             <i data-lucide="bar-chart-2" size="15" stroke-width="2"></i>
             Statistik
         </a>
+
         <a class="nav-item" href="#">
             <i data-lucide="settings" size="15" stroke-width="2"></i>
             Pengaturan
@@ -489,17 +538,17 @@
     <!-- MAIN -->
     <div class="main">
 
-    @if (session('success'))
-    <div class="alert success">
-        {{ session('success') }}
-    </div>
-@endif
+        @if (session('success'))
+            <div class="alert success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-@if (session('error'))
-    <div class="alert error">
-        {{ session('error') }}
-    </div>
-@endif
+        @if (session('error'))
+            <div class="alert error">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <!-- TOPBAR -->
         <div class="topbar">
@@ -507,115 +556,270 @@
                 <h1>Dashboard Antrian</h1>
                 <p>Kelola pemanggilan nomor antrian secara real-time.</p>
             </div>
+
             <form action="{{ route('admin.panggilBerikutnya') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn-primary">
-        <i data-lucide="chevron-right" size="15" stroke-width="2.5"></i>
-        Panggil Berikutnya
-    </button>
-</form>
+                @csrf
+                <button type="submit" class="btn-primary">
+                    <i data-lucide="chevron-right" size="15" stroke-width="2.5"></i>
+                    Panggil Berikutnya
+                </button>
+            </form>
         </div>
 
         <!-- CURRENT BANNER -->
         <div class="current">
             <div class="current-block">
                 <span class="current-eyebrow">Dipanggil sekarang</span>
-                @if ($dipanggil)
-                    <span class="current-number">{{ $dipanggil->nomor }}</span>
-                @else
-                    <span class="current-number empty">—</span>
-                @endif
+
+                <span id="adminCalledNumber" class="current-number {{ $dipanggil ? '' : 'empty' }}">
+                    {{ $dipanggil ? $dipanggil->nomor : '—' }}
+                </span>
             </div>
 
             <div class="current-sep"></div>
 
             <div class="current-block">
-                @if ($dipanggil)
-                    <div class="current-name">{{ $dipanggil->nama }}</div>
-                    <div class="current-pill">
-                        <i data-lucide="radio" size="11" stroke-width="2.5"></i>
-                        Sedang dilayani
-                    </div>
-                @else
-                    <div class="current-name empty">Belum ada yang dipanggil</div>
-                @endif
+                <div id="adminCalledInfo">
+                    @if ($dipanggil)
+                        <div id="adminCalledName" class="current-name">
+                            {{ $dipanggil->nama }}
+                        </div>
+
+                        <div class="current-pill">
+                            <i data-lucide="radio" size="11" stroke-width="2.5"></i>
+                            Sedang dilayani
+                        </div>
+                    @else
+                        <div id="adminCalledName" class="current-name empty">
+                            Belum ada yang dipanggil
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
 
         <!-- QUEUE GRID -->
         <div class="grid">
 
-            <!-- Menunggu -->
+            <!-- MENUNGGU -->
             <div class="card">
                 <div class="card-head">
                     <span class="card-title">Antrian Menunggu</span>
-                    <span class="chip">{{ $menunggu->count() }}</span>
+                    <span id="waitingCount" class="chip">{{ $menunggu->count() }}</span>
                 </div>
 
-                @forelse ($menunggu as $item)
-                    <div class="queue-item">
-                        <div class="queue-left">
-                            <div class="badge-number">{{ $item->nomor }}</div>
-                            <div>
-                                <div class="q-name">{{ $item->nama }}</div>
-                                <div class="q-status">{{ $item->status }}</div>
+                <div id="adminWaitingList">
+                    @forelse ($menunggu as $item)
+                        <div class="queue-item">
+                            <div class="queue-left">
+                                <div class="badge-number">{{ $item->nomor }}</div>
+
+                                <div>
+                                    <div class="q-name">{{ $item->nama }}</div>
+                                    <div class="q-status">{{ $item->status }}</div>
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <form action="{{ route('admin.terlambat', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn-danger">
+                                        <i data-lucide="clock" size="12" stroke-width="2"></i>
+                                        Terlambat
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        <div class="actions">
-                            <form action="{{ route('admin.terlambat', $item->id) }}" method="POST">
-    @csrf
-    <button type="submit" class="btn-danger">
-        <i data-lucide="clock" size="12" stroke-width="2"></i>
-        Terlambat
-    </button>
-</form>
+                    @empty
+                        <div class="empty-state">
+                            <i data-lucide="inbox" size="28" stroke-width="1.5"></i>
+                            Belum ada antrian menunggu.
                         </div>
-                    </div>
-                @empty
-                    <div class="empty-state">
-                        <i data-lucide="inbox" size="28" stroke-width="1.5"></i>
-                        Belum ada antrian menunggu.
-                    </div>
-                @endforelse
+                    @endforelse
+                </div>
             </div>
 
-            <!-- Terlambat -->
+            <!-- TERLAMBAT -->
             <div class="card">
                 <div class="card-head">
                     <span class="card-title">Terlambat</span>
-                    <span class="chip">{{ $terlambat->count() }}</span>
+                    <span id="lateCount" class="chip">{{ $terlambat->count() }}</span>
                 </div>
 
-                @forelse ($terlambat as $item)
-                    <div class="queue-item">
-                        <div class="queue-left">
-                            <div class="badge-number late">{{ $item->nomor }}</div>
-                            <div>
-                                <div class="q-name">{{ $item->nama }}</div>
-                                <div class="q-status">{{ $item->status }}</div>
+                <div id="adminLateList">
+                    @forelse ($terlambat as $item)
+                        <div class="queue-item">
+                            <div class="queue-left">
+                                <div class="badge-number late">{{ $item->nomor }}</div>
+
+                                <div>
+                                    <div class="q-name">{{ $item->nama }}</div>
+                                    <div class="q-status">{{ $item->status }}</div>
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <form action="{{ route('admin.panggilTerlambat', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn-warning">
+                                        <i data-lucide="phone-call" size="12" stroke-width="2.5"></i>
+                                        Panggil
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        <div class="actions">
-                            <form action="{{ route('admin.panggilTerlambat', $item->id) }}" method="POST">
-    @csrf
-    <button type="submit" class="btn-warning">
-        <i data-lucide="phone-call" size="12" stroke-width="2.5"></i>
-        Panggil
-    </button>
-</form>
+                    @empty
+                        <div class="empty-state">
+                            <i data-lucide="check-circle" size="28" stroke-width="1.5"></i>
+                            Tidak ada yang terlambat.
                         </div>
-                    </div>
-                @empty
-                    <div class="empty-state">
-                        <i data-lucide="check-circle" size="28" stroke-width="1.5"></i>
-                        Tidak ada yang terlambat.
-                    </div>
-                @endforelse
+                    @endforelse
+                </div>
             </div>
 
         </div>
     </div>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const adminSource = new EventSource("{{ route('sse.antrian') }}");
+
+        adminSource.addEventListener('queue-update', function(event) {
+            const data = JSON.parse(event.data);
+
+            updateAdminCalled(data.dipanggil);
+            updateAdminWaitingList(data.menunggu);
+            updateAdminLateList(data.terlambat);
+
+            lucide.createIcons();
+        });
+
+        adminSource.onerror = function(error) {
+            console.error('SSE error di admin:', error);
+        };
+
+        function updateAdminCalled(dipanggil) {
+            const numberEl = document.getElementById('adminCalledNumber');
+            const infoEl = document.getElementById('adminCalledInfo');
+
+            if (dipanggil) {
+                numberEl.textContent = dipanggil.nomor;
+                numberEl.classList.remove('empty');
+
+                infoEl.innerHTML = `
+                    <div id="adminCalledName" class="current-name">
+                        ${escapeHtml(dipanggil.nama)}
+                    </div>
+
+                    <div class="current-pill">
+                        <i data-lucide="radio" size="11" stroke-width="2.5"></i>
+                        Sedang dilayani
+                    </div>
+                `;
+            } else {
+                numberEl.textContent = '—';
+                numberEl.classList.add('empty');
+
+                infoEl.innerHTML = `
+                    <div id="adminCalledName" class="current-name empty">
+                        Belum ada yang dipanggil
+                    </div>
+                `;
+            }
+        }
+
+        function updateAdminWaitingList(menunggu) {
+            const listEl = document.getElementById('adminWaitingList');
+            const countEl = document.getElementById('waitingCount');
+
+            countEl.textContent = menunggu ? menunggu.length : 0;
+
+            if (!menunggu || menunggu.length === 0) {
+                listEl.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="inbox" size="28" stroke-width="1.5"></i>
+                        Belum ada antrian menunggu.
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = menunggu.map(item => `
+                <div class="queue-item">
+                    <div class="queue-left">
+                        <div class="badge-number">${item.nomor}</div>
+
+                        <div>
+                            <div class="q-name">${escapeHtml(item.nama)}</div>
+                            <div class="q-status">${escapeHtml(item.status)}</div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <form action="/admin/terlambat/${item.id}" method="POST">
+                            <input type="hidden" name="_token" value="${csrfToken}">
+                            <button type="submit" class="btn-danger">
+                                <i data-lucide="clock" size="12" stroke-width="2"></i>
+                                Terlambat
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateAdminLateList(terlambat) {
+            const listEl = document.getElementById('adminLateList');
+            const countEl = document.getElementById('lateCount');
+
+            countEl.textContent = terlambat ? terlambat.length : 0;
+
+            if (!terlambat || terlambat.length === 0) {
+                listEl.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="check-circle" size="28" stroke-width="1.5"></i>
+                        Tidak ada yang terlambat.
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = terlambat.map(item => `
+                <div class="queue-item">
+                    <div class="queue-left">
+                        <div class="badge-number late">${item.nomor}</div>
+
+                        <div>
+                            <div class="q-name">${escapeHtml(item.nama)}</div>
+                            <div class="q-status">${escapeHtml(item.status)}</div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <form action="/admin/panggil-terlambat/${item.id}" method="POST">
+                            <input type="hidden" name="_token" value="${csrfToken}">
+                            <button type="submit" class="btn-warning">
+                                <i data-lucide="phone-call" size="12" stroke-width="2.5"></i>
+                                Panggil
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+
+            return String(text)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+    </script>
 </body>
 </html>

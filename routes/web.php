@@ -20,3 +20,7 @@ Route::post('/admin/terlambat/{id}', [AntrianController::class, 'tandaiTerlambat
     ->name('admin.terlambat');
 Route::post('/admin/panggil-terlambat/{id}', [AntrianController::class, 'panggilTerlambat'])
     ->name('admin.panggilTerlambat');
+
+    Route::get('/papan', [AntrianController::class, 'papan'])->name('papan');
+
+    Route::get('/sse/antrian', [AntrianController::class, 'stream'])->name('sse.antrian');

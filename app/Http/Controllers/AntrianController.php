@@ -116,4 +116,79 @@ public function panggilTerlambat($id)
 
     return redirect()->route('admin')->with('success', 'Antrian terlambat berhasil dipanggil.');
 }
+
+public function papan()
+{
+    $dipanggil = Antrian::where('status', 'dipanggil')
+        ->latest('called_at')
+        ->first();
+
+    $menunggu = Antrian::where('status', 'menunggu')
+        ->orderBy('nomor', 'asc')
+        ->limit(5)
+        ->get();
+
+    return view('papan', compact('dipanggil', 'menunggu'));
+}
+
+public function stream()
+{
+    $dipanggil = Antrian::where('status', 'dipanggil')
+        ->latest('called_at')
+        ->first();
+
+    $menunggu = Antrian::where('status', 'menunggu')
+        ->orderBy('nomor', 'asc')
+        ->limit(10)
+        ->get();
+
+    $terlambat = Antrian::where('status', 'terlambat')
+        ->orderBy('nomor', 'asc')
+        ->get();
+
+    $data = [
+        'dipanggil' => $dipanggil ? [
+            'id' => $dipanggil->id,
+            'nomor' => $dipanggil->nomor,
+            'nomor_format' => str_pad($dipanggil->nomor, 3, '0', STR_PAD_LEFT),
+            'nama' => $dipanggil->nama,
+            'status' => $dipanggil->status,
+            'called_at' => $dipanggil->called_at,
+        ] : null,
+
+        'menunggu' => $menunggu->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'nomor' => $item->nomor,
+                'nomor_format' => str_pad($item->nomor, 3, '0', STR_PAD_LEFT),
+                'nama' => $item->nama,
+                'status' => $item->status,
+            ];
+        })->values(),
+
+        'terlambat' => $terlambat->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'nomor' => $item->nomor,
+                'nomor_format' => str_pad($item->nomor, 3, '0', STR_PAD_LEFT),
+                'nama' => $item->nama,
+                'status' => $item->status,
+            ];
+        })->values(),
+    ];
+
+    return response(
+        "retry: 3000\n" .
+        "event: queue-update\n" .
+        "data: " . json_encode($data) . "\n\n",
+        200,
+        [
+            'Content-Type' => 'text/event-stream',
+            'Cache-Control' => 'no-cache',
+            'Connection' => 'close',
+            'X-Accel-Buffering' => 'no',
+        ]
+    );
+}
+
 }
